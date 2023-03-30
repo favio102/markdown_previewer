@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Build a Markdown Previewer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    
+    <script src="./marked.js"></script>
+
+    <script>
+        function updatePreview(){
+            let previewElement = document.getElementById("preview");
+            let editorValue = document.getElementById("editor").value;
+            let markedUpHTML = marked(editorValue, {breaks: true});
+            previewElement.innerHTML = markedUpHTML;
+        }
+        
+        function setDefault() {
+            let defaultText = 
+`\
+# How to Download MP3s from Youtube with Python
+## This is a Markdown
+[Learn more about this tutorial on how to download MP3s from Youtube with Python.](https://www.freecodecamp.org/news/download-trim-mp3-from-youtube-with-python/)
+
+<dl>
+    <dt>Definition list</dt>
+    <dd>Is something people use sometimes.</dd>
+
+    <dt>Markdown in HTML</dt>
+    <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
+</dl>
+
+This is the source code:
+
+\`import youtube_dl # client to many multimedia portals\`
+
+\`# downloads yt_url to the same directory from which the script runs\`
+
+\`\`
+    def download_audio(yt_url):
+    ydl_opts =  {
+            'format': 'bestaudio/best',
+            'postprocessors': [{
+                'key': 'FFmpegExtractAudio',
+                'preferredcodec': 'mp3',
+                'preferredquality': '192',
+            }],
+        }
+        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+            ydl.download([yt_url])
+    def main():
+        yt_url = "https://www.youtube.com/watch?v=8OAPLk20epo"
+        download_audio(yt_url)
+    main()
+\`\`
+
+Required action before run the code:
+- Install homebrew
+- Then, in a terminal run:
+
+\`brew install ffmpeg\`
+- Install youtube package:
+
+\`pip install youtube-dl\`
+
+> In addition is possible to Trim the downloaded file.
+
+![focus](https://cdn.pixabay.com/photo/2015/05/31/10/59/headphones-791078_960_720.jpg)
+
+**FreeCodeCamp**
+`;
+
+            let editorField = document.getElementById("editor");
+            let previewElement = document.getElementById("preview");
+            editorField.value = defaultText;
+            previewElement.innerHTML = marked(defaultText);
+        }
+
+    </script>
+    
+    
+
+  </head>
+  <body onload="setDefault()">
+    <div class="container-fluid --bs-warning-text-emphasis
+">
+        <div class="row">
+            <div class="col text-center p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3 
+            ">
+            <h1>Build a Markdown Previewer</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class=" col-6 dark d-flex flex-column">
+                <div class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+                    <h2 class="text-center text-white dark my-2">Text editor</h2>
+                </div>
+
+                <div class="form-group flew-grow-1 d-flex flex-column">
+                    <textarea cols="30" rows="60"class="form-control form-control flex-grow-1" id="editor" onkeyup="updatePreview()"></textarea>
+                </div>
+            </div>
+
+            <div class="col-6 dark">
+                <div class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+                    <h2 class="col text-center text-white dark my-2">Markdown</h2>
+                </div>
+                <div id="preview"></div>
+            </div>
+        </div>      
+    </div>
+    
+        <!-- javascript -->
+        <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+        
+        <script type="module" defer src="app.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+        
+    </body>
+</html>
